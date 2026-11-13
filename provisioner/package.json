@@ -1,0 +1,19 @@
+{
+  "name": "@opensecondbrain/provisioner",
+  "version": "1.0.0",
+  "description": "Automated CLI provisioner to build OpenSecondBrain workspaces in Notion via Notion API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/index.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  },
+  "license": "MIT"
+}

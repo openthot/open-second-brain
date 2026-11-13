@@ -1,0 +1,90 @@
+{
+  "name": "DB_Tasks",
+  "title": "Action Tasks",
+  "description": "Atomic actionable items linked to Projects and Areas with Eisenhower matrix prioritization",
+  "properties": {
+    "Task": {
+      "type": "title",
+      "description": "Action item name"
+    },
+    "Status": {
+      "type": "status",
+      "options": {
+        "To Do": ["To Do", "Next Up"],
+        "In Progress": ["In Progress", "Blocked"],
+        "Complete": ["Done", "Archived"]
+      },
+      "default": "To Do"
+    },
+    "Due Date": {
+      "type": "date",
+      "description": "Deadline date and optional time"
+    },
+    "Priority": {
+      "type": "select",
+      "options": ["P1 (Critical)", "P2 (High)", "P3 (Normal)", "P4 (Low)"],
+      "default": "P3 (Normal)"
+    },
+    "Urgency": {
+      "type": "select",
+      "options": ["Urgent", "Not Urgent"],
+      "default": "Not Urgent"
+    },
+    "Importance": {
+      "type": "select",
+      "options": ["Important", "Not Important"],
+      "default": "Important"
+    },
+    "Eisenhower Quadrant": {
+      "type": "formula",
+      "formula_version": "2.0",
+      "expression": "let(u, prop(\"Urgency\") == \"Urgent\", i, prop(\"Importance\") == \"Important\", ifs(u and i, \"🔥 Q1: Do First\", not(u) and i, \"🎯 Q2: Schedule\", u and not(i), \"👥 Q3: Delegate\", \"🗑️ Q4: Eliminate\"))"
+    },
+    "Urgency Badge": {
+      "type": "formula",
+      "formula_version": "2.0",
+      "expression": "let(isCompleted, prop(\"Status\") == \"Done\", due, prop(\"Due Date\"), diff, dateBetween(due, now(), \"days\"), ifs(isCompleted, \"✓ Completed\", empty(due), \"🗓️ Unscheduled\", diff < 0, \"⚠️ Overdue (\" + abs(diff) + \"d)\", diff == 0, \"🔥 Due Today\", diff == 1, \"⚡ Tomorrow\", \"📅 \" + formatDate(due, \"MMM DD\")))"
+    },
+    "Project": {
+      "type": "relation",
+      "database": "DB_Projects",
+      "single_select": true,
+      "description": "Parent project"
+    },
+    "Area": {
+      "type": "relation",
+      "database": "DB_Areas",
+      "single_select": true,
+      "description": "Associated area of life"
+    },
+    "Parent Task": {
+      "type": "relation",
+      "database": "DB_Tasks",
+      "single_select": true,
+      "description": "Parent task for sub-items"
+    },
+    "Sub-tasks": {
+      "type": "relation",
+      "database": "DB_Tasks",
+      "single_select": false,
+      "description": "Sub-tasks under this item"
+    }
+  },
+  "default_views": [
+    {
+      "name": "Today's Focus",
+      "type": "list",
+      "filter": { "Status": { "is_not": "Done" } }
+    },
+    {
+      "name": "Eisenhower Matrix",
+      "type": "board",
+      "group_by": "Eisenhower Quadrant"
+    },
+    {
+      "name": "Weekly Calendar",
+      "type": "calendar",
+      "date_property": "Due Date"
+    }
+  ]
+}

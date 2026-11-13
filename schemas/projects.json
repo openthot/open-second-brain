@@ -1,0 +1,75 @@
+{
+  "name": "DB_Projects",
+  "title": "Projects",
+  "description": "Short-term endeavors with specific goals and fixed deadlines (P in P.A.R.A.)",
+  "properties": {
+    "Name": {
+      "type": "title",
+      "description": "Project title"
+    },
+    "Status": {
+      "type": "status",
+      "options": {
+        "To Do": ["Backlog", "Planning"],
+        "In Progress": ["Active Sprint", "On Hold"],
+        "Complete": ["Completed", "Cancelled"]
+      },
+      "default": "Planning"
+    },
+    "Deadline": {
+      "type": "date",
+      "description": "Target completion date"
+    },
+    "Area": {
+      "type": "relation",
+      "database": "DB_Areas",
+      "single_select": true,
+      "description": "The sphere of life this project belongs to"
+    },
+    "Tasks": {
+      "type": "relation",
+      "database": "DB_Tasks",
+      "single_select": false,
+      "description": "All actionable tasks for this project"
+    },
+    "Notes": {
+      "type": "relation",
+      "database": "DB_Notes",
+      "single_select": false,
+      "description": "Research, meeting minutes, and notes related to this project"
+    },
+    "Resources": {
+      "type": "relation",
+      "database": "DB_Resources",
+      "single_select": false,
+      "description": "Reference materials and documentation"
+    },
+    "Progress Bar": {
+      "type": "formula",
+      "formula_version": "2.0",
+      "expression": "let(total, prop(\"Tasks\").length(), done, prop(\"Tasks\").filter(current.prop(\"Status\") == \"Done\").length(), percent, if(total > 0, round(done / total * 100), 0), barLength, 10, filled, round(percent / 10), empty, barLength - filled, if(total == 0, \"⚪ No Tasks\", repeat(\"▓\", filled) + repeat(\"░\", empty) + \" \" + percent + \"% (\" + done + \"/\" + total + \")\"))"
+    },
+    "Health": {
+      "type": "formula",
+      "formula_version": "2.0",
+      "expression": "let(total, prop(\"Tasks\").length(), done, prop(\"Tasks\").filter(current.prop(\"Status\") == \"Done\").length(), isDone, prop(\"Status\") == \"Completed\" or (total > 0 and done == total), deadline, prop(\"Deadline\"), daysRemaining, if(empty(deadline), 999, dateBetween(deadline, now(), \"days\")), ifs(isDone, \"✅ Completed\", daysRemaining < 0, \"🔴 Overdue by \" + abs(daysRemaining) + \"d\", daysRemaining <= 3, \"🟡 Due Soon (\" + daysRemaining + \"d left)\", \"🟢 On Track\"))"
+    }
+  },
+  "default_views": [
+    {
+      "name": "Active Board",
+      "type": "board",
+      "group_by": "Status",
+      "filter": { "Status": { "is_not": "Completed" } }
+    },
+    {
+      "name": "Timeline",
+      "type": "timeline",
+      "date_property": "Deadline"
+    },
+    {
+      "name": "All Projects",
+      "type": "table"
+    }
+  ]
+}

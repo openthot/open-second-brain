@@ -1,0 +1,47 @@
+{
+  "name": "DB_Reviews",
+  "title": "Cadence & Reviews",
+  "description": "Weekly, monthly, and quarterly retrospectives for maintaining alignment and accountability",
+  "properties": {
+    "Review Period": {
+      "type": "title",
+      "description": "e.g. 2026 - W46 Review"
+    },
+    "Cadence": {
+      "type": "select",
+      "options": ["Weekly", "Monthly", "Quarterly", "Annual"],
+      "default": "Weekly"
+    },
+    "Date": {
+      "type": "date"
+    },
+    "Habit Score (%)": {
+      "type": "number",
+      "format": "percent"
+    },
+    "Key Wins": {
+      "type": "rich_text",
+      "description": "What went well?"
+    },
+    "Blockers & Friction": {
+      "type": "rich_text",
+      "description": "What stalled progress?"
+    },
+    "Projects Reviewed": {
+      "type": "relation",
+      "database": "DB_Projects",
+      "single_select": false
+    }
+  },
+  "default_views": [
+    {
+      "name": "Timeline History",
+      "type": "timeline",
+      "date_property": "Date"
+    },
+    {
+      "name": "Recent Reviews",
+      "type": "table"
+    }
+  ]
+}

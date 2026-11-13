@@ -1,0 +1,58 @@
+{
+  "name": "DB_Areas",
+  "title": "Areas of Life",
+  "description": "Spheres of long-term responsibility that require sustained maintenance (A in P.A.R.A.)",
+  "properties": {
+    "Name": {
+      "type": "title",
+      "description": "Area title (e.g. Health, Career, Finance)"
+    },
+    "Category": {
+      "type": "select",
+      "options": ["Professional", "Personal", "Financial", "Health & Wellness", "Relationships"],
+      "default": "Personal"
+    },
+    "Status": {
+      "type": "status",
+      "options": {
+        "Active": ["Focusing", "Maintaining"],
+        "Inactive": ["Paused"]
+      },
+      "default": "Maintaining"
+    },
+    "Projects": {
+      "type": "relation",
+      "database": "DB_Projects",
+      "single_select": false,
+      "description": "Projects currently belonging to this area"
+    },
+    "Tasks": {
+      "type": "relation",
+      "database": "DB_Tasks",
+      "single_select": false,
+      "description": "Standalone maintenance tasks"
+    },
+    "Resources": {
+      "type": "relation",
+      "database": "DB_Resources",
+      "single_select": false,
+      "description": "Knowledge hubs curated under this area"
+    },
+    "Active Projects Count": {
+      "type": "formula",
+      "formula_version": "2.0",
+      "expression": "prop(\"Projects\").filter(current.prop(\"Status\") != \"Completed\").length()"
+    }
+  },
+  "default_views": [
+    {
+      "name": "Gallery by Category",
+      "type": "gallery",
+      "card_preview": "cover"
+    },
+    {
+      "name": "Life Balance Table",
+      "type": "table"
+    }
+  ]
+}

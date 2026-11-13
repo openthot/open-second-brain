@@ -1,0 +1,50 @@
+{
+  "name": "DB_Resources",
+  "title": "Resources & Knowledge Vault",
+  "description": "Curated topics of ongoing interest, swipe files, guides, and learning roadmaps (R in P.A.R.A.)",
+  "properties": {
+    "Topic": {
+      "type": "title",
+      "description": "Topic or collection name"
+    },
+    "Category": {
+      "type": "select",
+      "options": ["Software & Tools", "Books & Summaries", "Mental Models", "Design Systems", "Finance & Investments", "Health & Longevity"],
+      "default": "Software & Tools"
+    },
+    "Area": {
+      "type": "relation",
+      "database": "DB_Areas",
+      "single_select": true,
+      "description": "Overarching area of life"
+    },
+    "Notes": {
+      "type": "relation",
+      "database": "DB_Notes",
+      "single_select": false,
+      "description": "Notes categorized under this resource hub"
+    },
+    "Projects": {
+      "type": "relation",
+      "database": "DB_Projects",
+      "single_select": false,
+      "description": "Active projects using this resource"
+    },
+    "Note Count": {
+      "type": "formula",
+      "formula_version": "2.0",
+      "expression": "prop(\"Notes\").length()"
+    }
+  },
+  "default_views": [
+    {
+      "name": "Resource Hubs",
+      "type": "gallery",
+      "card_preview": "cover"
+    },
+    {
+      "name": "Topic Index",
+      "type": "table"
+    }
+  ]
+}

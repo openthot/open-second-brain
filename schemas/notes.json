@@ -1,0 +1,61 @@
+{
+  "name": "DB_Notes",
+  "title": "Notes & Quick Capture",
+  "description": "Universal capture inbox for fleeting thoughts, web clippings, literature notes, and meeting minutes",
+  "properties": {
+    "Title": {
+      "type": "title",
+      "description": "Note title or summary line"
+    },
+    "Status": {
+      "type": "select",
+      "options": ["📥 Inbox", "⚡ In Progress", "✅ Processed", "📦 Evergreen"],
+      "default": "📥 Inbox"
+    },
+    "Type": {
+      "type": "select",
+      "options": ["Quick Capture", "Literature / Book", "Meeting Minutes", "Web Bookmark", "Idea / Draft"],
+      "default": "Quick Capture"
+    },
+    "Tags": {
+      "type": "multi_select",
+      "options": ["Tech", "Philosophy", "Design", "Productivity", "Health", "Business"]
+    },
+    "URL": {
+      "type": "url",
+      "description": "Source URL or reference link"
+    },
+    "Project": {
+      "type": "relation",
+      "database": "DB_Projects",
+      "single_select": true,
+      "description": "Linked project"
+    },
+    "Resource": {
+      "type": "relation",
+      "database": "DB_Resources",
+      "single_select": true,
+      "description": "Knowledge topic/hub"
+    },
+    "Created Date": {
+      "type": "created_time"
+    }
+  },
+  "default_views": [
+    {
+      "name": "Inbox (Triage)",
+      "type": "list",
+      "filter": { "Status": { "equals": "📥 Inbox" } }
+    },
+    {
+      "name": "Knowledge Gallery",
+      "type": "gallery",
+      "card_preview": "page_content"
+    },
+    {
+      "name": "By Category",
+      "type": "board",
+      "group_by": "Type"
+    }
+  ]
+}
