@@ -3,9 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenSecondBrain — Documentation & Technical Reference</title>
-  <meta name="description" content="Technical documentation, relational database schemas, and Formulas 2.0 reference for the OpenSecondBrain Notion template.">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>OpenSecondBrain — Free Notion Second Brain Template (PARA Method & Formulas 2.0)</title>
+  <meta name="title" content="OpenSecondBrain — Free Notion Second Brain Template (PARA Method & Formulas 2.0)">
+  <meta name="description" content="OpenSecondBrain is an open-source personal knowledge and task management OS for Notion. Built strictly on Tiago Forte's P.A.R.A. framework with native Notion Formulas 2.0 progress bars, Eisenhower matrix, and zero third-party widgets.">
+  <meta name="keywords" content="Notion Second Brain, Notion template, PARA method, Notion Formulas 2.0, Eisenhower matrix, PKM, personal knowledge management, task manager, Notion marketplace, free notion template, Tiago Forte">
+  <meta name="author" content="OpenSecondBrain Open Source Community">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#0f1117">
+  <link rel="canonical" href="https://opensecondbrain.github.io/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://opensecondbrain.github.io/">
+  <meta property="og:title" content="OpenSecondBrain — Free Notion Second Brain Template & System">
+  <meta property="og:description" content="Complete P.A.R.A. architecture for Notion with Formulas 2.0 progress bars, health indicators, and an automated headless TypeScript provisioner.">
+  <meta property="og:image" content="https://opensecondbrain.github.io/assets/og-image.png">
+  <meta property="og:site_name" content="OpenSecondBrain">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://opensecondbrain.github.io/">
+  <meta name="twitter:title" content="OpenSecondBrain — Free Notion Second Brain Template">
+  <meta name="twitter:description" content="Production-ready Notion template built with the P.A.R.A. method, Formulas 2.0, and zero paid widgets.">
+  <meta name="twitter:image" content="https://opensecondbrain.github.io/assets/og-image.png">
+
+  <!-- Content Security Policy (Hardened) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+
+  <!-- Tailwind CSS -->
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+
+  <!-- Schema.org JSON-LD Structured Data for Google Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://opensecondbrain.github.io/#software",
+        "name": "OpenSecondBrain",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Notion",
+        "description": "An open-source personal knowledge and task management system for Notion, modeled on the P.A.R.A. method and powered by Formulas 2.0.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "OpenSecondBrain OSS Project"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://opensecondbrain.github.io/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is OpenSecondBrain?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "OpenSecondBrain is an open-source, clean-room personal productivity system for Notion based on Tiago Forte's P.A.R.A. method (Projects, Areas, Resources, Archives), featuring native Formulas 2.0 calculations without requiring any third-party widgets."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is OpenSecondBrain free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, OpenSecondBrain is 100% free and open-source under dual MIT (code) and Creative Commons Attribution 4.0 (schemas & documentation) licenses."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I duplicate this template into my Notion workspace?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open the public template link, click the 'Duplicate' button in the upper right corner of Notion, and the full relational structure will copy into your private workspace."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this template require Notion Formulas 2.0?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, OpenSecondBrain leverages Notion Formulas 2.0 syntax (let, ifs, repeat, filter) to compute dynamic ASCII progress bars, health scores, and Eisenhower quadrants natively with zero external dependencies."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://opensecondbrain.github.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Marketplace & Duplication",
+            "item": "https://opensecondbrain.github.io/#marketplace"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Formulas 2.0 Reference",
+            "item": "https://opensecondbrain.github.io/#formulas"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <style>
     /* Clean developer typography & scrollbar */
     :root {
@@ -53,22 +170,23 @@
 <body class="antialiased font-sans transition-colors duration-200">
 
   <!-- Sticky Top Navbar -->
-  <header class="sticky top-0 z-40 w-full border-b backdrop-blur" style="background-color: rgba(15, 17, 23, 0.85); border-color: var(--card-border);">
+  <header class="sticky top-0 z-40 w-full border-b backdrop-blur" style="background-color: rgba(15, 17, 23, 0.88); border-color: var(--card-border);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <span class="text-xl">🧠</span>
+        <span class="text-xl" role="img" aria-label="brain">🧠</span>
         <span class="font-bold text-sm tracking-tight">OpenSecondBrain</span>
         <span class="text-[10px] font-mono px-2 py-0.5 rounded border" style="background-color: var(--accent-muted); border-color: var(--accent); color: var(--accent);">v3.5 OSS</span>
       </div>
-      <div class="flex items-center gap-4 text-xs">
+      <nav class="flex items-center gap-4 text-xs" aria-label="Main Navigation">
+        <a href="#marketplace" class="hover:text-sky-400 font-medium" style="color: var(--accent)">Get Template</a>
         <a href="#architecture" class="hidden sm:inline hover:underline" style="color: var(--text-muted)">Architecture</a>
-        <a href="#schemas" class="hidden sm:inline hover:underline" style="color: var(--text-muted)">Schemas</a>
         <a href="#formulas" class="hidden sm:inline hover:underline" style="color: var(--text-muted)">Formulas 2.0</a>
         <a href="#provisioner" class="hidden sm:inline hover:underline" style="color: var(--text-muted)">CLI Provisioner</a>
-        <button id="themeToggle" onclick="toggleTheme()" class="px-2.5 py-1 rounded border text-xs flex items-center gap-1.5" style="border-color: var(--card-border); background-color: var(--card-bg);">
+        <a href="#faq" class="hidden sm:inline hover:underline" style="color: var(--text-muted)">FAQ</a>
+        <button id="themeToggle" onclick="toggleTheme()" aria-label="Toggle Dark/Light Mode" class="px-2.5 py-1 rounded border text-xs flex items-center gap-1.5" style="border-color: var(--card-border); background-color: var(--card-bg);">
           <span id="themeIcon">☀️</span>
         </button>
-      </div>
+      </nav>
     </div>
   </header>
 
@@ -80,8 +198,8 @@
         <p class="font-semibold uppercase tracking-wider text-[11px] mb-2" style="color: var(--text-muted)">Getting Started</p>
         <ul class="space-y-1.5" style="color: var(--text-muted)">
           <li><a href="#overview" class="hover:text-sky-400 block py-0.5">Overview</a></li>
+          <li><a href="#marketplace" class="hover:text-sky-400 block py-0.5 text-sky-400 font-semibold">⚡ Notion Marketplace Link</a></li>
           <li><a href="#architecture" class="hover:text-sky-400 block py-0.5">Data Model & Relations</a></li>
-          <li><a href="#cockpit" class="hover:text-sky-400 block py-0.5">Dashboard Layout</a></li>
         </ul>
       </div>
       <div>
@@ -91,6 +209,7 @@
           <li><a href="#schemas" class="hover:text-sky-400 block py-0.5">Database Schemas</a></li>
           <li><a href="#provisioner" class="hover:text-sky-400 block py-0.5">API Provisioner CLI</a></li>
           <li><a href="#capture" class="hover:text-sky-400 block py-0.5">Fast Capture & Mobile</a></li>
+          <li><a href="#faq" class="hover:text-sky-400 block py-0.5">FAQ</a></li>
         </ul>
       </div>
     </aside>
@@ -98,14 +217,27 @@
     <!-- Main Documentation Content -->
     <main class="flex-1 min-w-0 space-y-12 pb-24">
       
-      <!-- Section: Overview -->
-      <section id="overview" class="space-y-4">
-        <h1 class="text-3xl font-extrabold tracking-tight">OpenSecondBrain Technical Specification</h1>
-        <p class="text-sm leading-relaxed" style="color: var(--text-muted)">
-          A clean-room, open-source personal knowledge and task management implementation for Notion. Built strictly on Tiago Forte's P.A.R.A. taxonomy (Projects, Areas, Resources, Archives) with zero third-party widget dependencies.
+      <!-- Section: Overview & Hero -->
+      <section id="overview" class="space-y-5">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs border" style="background-color: var(--accent-muted); border-color: var(--accent); color: var(--accent);">
+          <span>✨ Notion Marketplace & Formulas 2.0 Ready</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">The Open-Source Second Brain for Notion</h1>
+        <p class="text-base leading-relaxed" style="color: var(--text-muted)">
+          A clean-room, open-source personal knowledge and task management implementation for Notion. Built strictly on Tiago Forte's P.A.R.A. taxonomy (Projects, Areas, Resources, Archives) with zero slow third-party widget dependencies.
         </p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <a href="#marketplace" class="px-5 py-2.5 rounded-lg text-sm font-semibold text-slate-900 bg-sky-400 hover:bg-sky-300 transition-colors shadow-sm flex items-center gap-2">
+            <span>📥 Duplicate Template in Notion</span>
+          </a>
+          <a href="https://github.com/opensecondbrain/open-second-brain" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-lg text-sm font-semibold border hover:bg-slate-800 transition-colors flex items-center gap-2" style="border-color: var(--card-border); background-color: var(--card-bg);">
+            <span>⭐ Star on GitHub</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3">
           <div class="p-4 rounded-lg border" style="background-color: var(--card-bg); border-color: var(--card-border);">
             <div class="text-xs font-mono uppercase" style="color: var(--text-muted)">Databases</div>
             <div class="text-2xl font-bold mt-1">6 Relational</div>
@@ -120,6 +252,78 @@
             <div class="text-xs font-mono uppercase" style="color: var(--text-muted)">Automation</div>
             <div class="text-2xl font-bold mt-1">Notion REST API</div>
             <div class="text-xs mt-1" style="color: var(--text-muted)">Headless TypeScript provisioner</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Notion Marketplace & Duplicate Link Generator -->
+      <section id="marketplace" class="space-y-4 pt-6 border-t" style="border-color: var(--card-border)">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-bold tracking-tight text-sky-400">Notion Marketplace & Duplicate Link Hub</h2>
+            <p class="text-xs mt-1" style="color: var(--text-muted)">
+              Easily generate compatible Notion Marketplace listing URLs, one-click duplicate links, and creator submission URLs.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive URL Generator Tool -->
+        <div class="p-5 rounded-lg border space-y-4" style="background-color: var(--card-bg); border-color: var(--card-border);">
+          <div class="text-xs font-semibold uppercase tracking-wider text-sky-400">🔗 Notion Deep Link & Marketplace URL Generator</div>
+          
+          <div class="space-y-2">
+            <label for="notionInput" class="block text-xs font-medium" style="color: var(--text-muted)">
+              Enter your Notion Page URL, Page ID, or Custom Slug:
+            </label>
+            <div class="flex gap-2">
+              <input id="notionInput" type="text" value="https://notion.site/opensecondbrain-32characterpageid1234567890ab" 
+                     placeholder="e.g. https://notion.so/myworkspace/Page-Title-1234567890abcdef"
+                     class="flex-1 text-xs px-3 py-2 rounded border focus:outline-none focus:ring-1 focus:ring-sky-400 font-mono"
+                     style="background-color: var(--code-bg); border-color: var(--card-border); color: var(--text)"
+                     oninput="generateNotionLinks()">
+              <button onclick="resetDefaultLinks()" class="px-3 py-2 text-xs rounded border hover:bg-slate-800" style="border-color: var(--card-border); background-color: var(--card-bg)">
+                Reset Default
+              </button>
+            </div>
+          </div>
+
+          <!-- Generated Link Cards -->
+          <div class="grid grid-cols-1 gap-3 pt-2">
+            <!-- 1. Direct Duplicate Link -->
+            <div class="p-3.5 rounded border space-y-1.5" style="background-color: var(--code-bg); border-color: var(--card-border)">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-semibold text-emerald-400">1. Direct One-Click Duplicate Link (For Users)</span>
+                <button onclick="copyGeneratedLink('linkDuplicate')" class="text-xs px-2.5 py-1 rounded border hover:bg-slate-800 text-sky-400" style="border-color: var(--card-border)">
+                  📋 Copy Link
+                </button>
+              </div>
+              <p class="text-[11px]" style="color: var(--text-muted)">When opened by anyone logged into Notion, this directly offers the "Duplicate to workspace" modal.</p>
+              <div id="linkDuplicate" class="font-mono text-xs text-sky-300 break-all select-all">https://notion.site/opensecondbrain-32characterpageid1234567890ab?pvs=4</div>
+            </div>
+
+            <!-- 2. Marketplace Listing URL -->
+            <div class="p-3.5 rounded border space-y-1.5" style="background-color: var(--code-bg); border-color: var(--card-border)">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-semibold text-sky-400">2. Official Notion Marketplace Canonical URL</span>
+                <button onclick="copyGeneratedLink('linkMarketplace')" class="text-xs px-2.5 py-1 rounded border hover:bg-slate-800 text-sky-400" style="border-color: var(--card-border)">
+                  📋 Copy Link
+                </button>
+              </div>
+              <p class="text-[11px]" style="color: var(--text-muted)">The canonical landing page link on Notion's Template Gallery.</p>
+              <div id="linkMarketplace" class="font-mono text-xs text-sky-300 break-all select-all">https://www.notion.so/templates/opensecondbrain-para-system</div>
+            </div>
+
+            <!-- 3. Creator Submission Portal -->
+            <div class="p-3.5 rounded border space-y-1.5" style="background-color: var(--code-bg); border-color: var(--card-border)">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-semibold text-amber-400">3. Notion Marketplace Submission Portal</span>
+                <a href="https://www.notion.so/templates/submit" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 rounded border hover:bg-slate-800 text-amber-300" style="border-color: var(--card-border)">
+                  🚀 Open Submission Form
+                </a>
+              </div>
+              <p class="text-[11px]" style="color: var(--text-muted)">Submit your template for official review and inclusion in the Notion Template Directory.</p>
+              <div class="font-mono text-xs text-slate-400 break-all">https://www.notion.so/templates/submit</div>
+            </div>
           </div>
         </div>
       </section>
@@ -198,15 +402,15 @@
           
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label class="block text-xs mb-1" style="color: var(--text-muted)">Total Tasks (<span id="simTotalVal">10</span>)</label>
+              <label for="simTotal" class="block text-xs mb-1" style="color: var(--text-muted)">Total Tasks (<span id="simTotalVal">10</span>)</label>
               <input id="simTotal" type="range" min="1" max="25" value="10" class="w-full accent-sky-400" oninput="updateSim()">
             </div>
             <div>
-              <label class="block text-xs mb-1" style="color: var(--text-muted)">Completed Tasks (<span id="simDoneVal">6</span>)</label>
+              <label for="simDone" class="block text-xs mb-1" style="color: var(--text-muted)">Completed Tasks (<span id="simDoneVal">6</span>)</label>
               <input id="simDone" type="range" min="0" max="10" value="6" class="w-full accent-sky-400" oninput="updateSim()">
             </div>
             <div>
-              <label class="block text-xs mb-1" style="color: var(--text-muted)">Deadline Offset (Days from now)</label>
+              <label for="simDeadline" class="block text-xs mb-1" style="color: var(--text-muted)">Deadline Offset (Days from now)</label>
               <select id="simDeadline" class="w-full text-xs p-1.5 rounded border" style="background-color: var(--code-bg); border-color: var(--card-border); color: var(--text)" onchange="updateSim()">
                 <option value="5">In 5 Days (On Track)</option>
                 <option value="2">In 2 Days (Due Soon)</option>
@@ -222,7 +426,7 @@
             </div>
             <div class="flex justify-between items-center pt-1 border-t" style="border-color: var(--card-border)">
               <span style="color: var(--text-muted)">Formula Output [Health Status]:</span>
-              <span id="outHealth" class="font-bold">🟢 On Track</span>
+              <span id="outHealth" class="font-bold text-emerald-400">🟢 On Track</span>
             </div>
           </div>
         </div>
@@ -240,8 +444,8 @@
   done, prop("Tasks").filter(current.prop("Status") == "Done").length(),
   percent, if(total > 0, round(done / total * 100), 0),
   barLength, 10,
-  filled, round(percent / 10),
-  empty, barLength - filled,
+  filled, min(barLength, max(0, round(percent / 10))),
+  empty, max(0, barLength - filled),
   if(
     total == 0,
     "⚪ No Tasks Assigned",
@@ -263,25 +467,57 @@
   done, prop("Tasks").filter(current.prop("Status") == "Done").length(),
   isDone, prop("Status") == "Completed" or (total > 0 and done == total),
   deadline, prop("Deadline"),
-  daysRemaining, if(empty(deadline), 999, dateBetween(deadline, now(), "days")),
   ifs(
     isDone, "✅ Completed",
-    daysRemaining < 0, "🔴 Overdue by " + abs(daysRemaining) + "d",
-    daysRemaining <= 3, "🟡 Due Soon (" + daysRemaining + "d left)",
-    "🟢 On Track"
+    empty(deadline), "⚪ No Deadline",
+    let(
+      daysRemaining, dateBetween(deadline, now(), "days"),
+      ifs(
+        daysRemaining < 0, "🔴 Overdue by " + abs(daysRemaining) + "d",
+        daysRemaining <= 3, "🟡 Due Soon (" + daysRemaining + "d left)",
+        "🟢 On Track"
+      )
+    )
   )
 )</code></pre>
         </div>
 
-        <!-- Formula 3: Eisenhower Quadrants -->
+        <!-- Formula 3: Urgency Badge -->
         <div class="space-y-2">
           <div class="flex items-center justify-between">
-            <h3 class="text-sm font-semibold">3. Eisenhower Matrix Priority (`DB_Tasks`)</h3>
+            <h3 class="text-sm font-semibold">3. Task Urgency & Overdue Badge (`DB_Tasks`)</h3>
             <button onclick="copySnippet('f3Code')" class="px-2.5 py-1 text-xs rounded border hover:bg-slate-800 transition-colors" style="border-color: var(--card-border); background-color: var(--card-bg)">
               📋 Copy Formula
             </button>
           </div>
           <pre class="p-4 rounded-lg border overflow-x-auto" style="background-color: var(--code-bg); border-color: var(--card-border)"><code id="f3Code">let(
+  isCompleted, prop("Status") == "Done",
+  due, prop("Due Date"),
+  ifs(
+    isCompleted, "✓ Done",
+    empty(due), "🗓️ Unscheduled",
+    let(
+      diff, dateBetween(due, now(), "days"),
+      ifs(
+        diff < 0, "⚠️ Overdue (" + abs(diff) + "d ago)",
+        diff == 0, "🔥 Due Today",
+        diff == 1, "⚡ Tomorrow",
+        "📅 " + formatDate(due, "MMM DD")
+      )
+    )
+  )
+)</code></pre>
+        </div>
+
+        <!-- Formula 4: Eisenhower Quadrants -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold">4. Eisenhower Matrix Priority (`DB_Tasks`)</h3>
+            <button onclick="copySnippet('f4Code')" class="px-2.5 py-1 text-xs rounded border hover:bg-slate-800 transition-colors" style="border-color: var(--card-border); background-color: var(--card-bg)">
+              📋 Copy Formula
+            </button>
+          </div>
+          <pre class="p-4 rounded-lg border overflow-x-auto" style="background-color: var(--code-bg); border-color: var(--card-border)"><code id="f4Code">let(
   u, prop("Urgency") == "Urgent",
   i, prop("Importance") == "Important",
   ifs(
@@ -352,6 +588,26 @@ npm start</code></pre>
         </div>
       </section>
 
+      <!-- Section: FAQ Accordion -->
+      <section id="faq" class="space-y-4 pt-4 border-t" style="border-color: var(--card-border)">
+        <h2 class="text-xl font-bold tracking-tight">Frequently Asked Questions</h2>
+        
+        <div class="space-y-3 text-xs">
+          <div class="p-4 rounded-lg border" style="background-color: var(--card-bg); border-color: var(--card-border);">
+            <div class="font-semibold text-sm mb-1">Is OpenSecondBrain really free?</div>
+            <p style="color: var(--text-muted)">Yes! OpenSecondBrain is 100% open source and free forever. Both the manual Notion setup and automated provisioner can be used without paid subscriptions or proprietary widgets.</p>
+          </div>
+          <div class="p-4 rounded-lg border" style="background-color: var(--card-bg); border-color: var(--card-border);">
+            <div class="font-semibold text-sm mb-1">How do I add this template to the Notion Marketplace?</div>
+            <p style="color: var(--text-muted)">Publish your parent page to the web with "Allow duplicate as template" enabled, then navigate to <a href="https://www.notion.so/templates/submit" target="_blank" rel="noopener noreferrer" class="text-sky-400 underline">notion.so/templates/submit</a> and paste your public link along with the listing description provided in <code class="font-mono text-sky-400">docs/NOTION_MARKETPLACE_LISTING.md</code>.</p>
+          </div>
+          <div class="p-4 rounded-lg border" style="background-color: var(--card-bg); border-color: var(--card-border);">
+            <div class="font-semibold text-sm mb-1">What makes Notion Formulas 2.0 better for this template?</div>
+            <p style="color: var(--text-muted)">Formulas 2.0 introduces native multi-line functions (let, ifs), array methods (map, filter), and string manipulation (repeat). This allows real-time ASCII progress bars and health assessments without relying on external, slow third-party embed widgets.</p>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -371,6 +627,46 @@ npm start</code></pre>
       document.getElementById('themeIcon').innerText = '🌙';
     }
 
+    // Interactive Notion Deep Link Generator
+    function generateNotionLinks() {
+      const input = document.getElementById('notionInput').value.trim();
+      let pageIdOrSlug = "opensecondbrain-para-system";
+
+      if (input) {
+        // Match 32 character hex ID if present
+        const match = input.match(/[a-f0-9]{32}/i);
+        if (match) {
+          pageIdOrSlug = match[0];
+        } else {
+          // Clean slug format
+          pageIdOrSlug = input.replace(/^https?:\/\/[^\/]+\//, "").split(/[?#]/)[0] || "opensecondbrain-para-system";
+        }
+      }
+
+      // 1. Direct Duplicate link
+      const dupLink = input.startsWith("http") 
+        ? (input.includes("?") ? `${input}&pvs=4` : `${input}?pvs=4`)
+        : `https://notion.site/${pageIdOrSlug}?pvs=4`;
+      document.getElementById('linkDuplicate').innerText = dupLink;
+
+      // 2. Marketplace Canonical URL
+      const slug = pageIdOrSlug.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      const marketUrl = `https://www.notion.so/templates/${slug || "opensecondbrain-para-system"}`;
+      document.getElementById('linkMarketplace').innerText = marketUrl;
+    }
+
+    function resetDefaultLinks() {
+      document.getElementById('notionInput').value = "https://notion.site/opensecondbrain-32characterpageid1234567890ab";
+      generateNotionLinks();
+    }
+
+    function copyGeneratedLink(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Link copied to clipboard:\n" + text);
+      });
+    }
+
     // Live Formula Simulator
     function updateSim() {
       const total = parseInt(document.getElementById('simTotal').value);
@@ -383,11 +679,11 @@ npm start</code></pre>
       document.getElementById('simTotalVal').innerText = total;
       document.getElementById('simDoneVal').innerText = done;
 
-      // Progress bar logic
+      // Progress bar logic with safe clamping
       const percent = total > 0 ? Math.round((done / total) * 100) : 0;
       const barLength = 10;
-      const filled = Math.round(percent / 10);
-      const empty = barLength - filled;
+      const filled = Math.min(barLength, Math.max(0, Math.round(percent / 10)));
+      const empty = Math.max(0, barLength - filled);
       const bar = "▓".repeat(filled) + "░".repeat(empty);
       document.getElementById('outBar').innerText = `${bar} ${percent}% (${done}/${total})`;
 
@@ -471,6 +767,7 @@ npm start</code></pre>
     // Init
     updateSim();
     showSchema('projects');
+    generateNotionLinks();
   </script>
 </body>
 </html>

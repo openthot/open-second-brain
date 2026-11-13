@@ -15,11 +15,16 @@ let(
   done, prop("Tasks").filter(current.prop("Status") == "Done").length(),
   isDone, prop("Status") == "Completed" or (total > 0 and done == total),
   deadline, prop("Deadline"),
-  daysRemaining, if(empty(deadline), 999, dateBetween(deadline, now(), "days")),
   ifs(
     isDone, "✅ Completed",
-    daysRemaining < 0, "🔴 Overdue by " + abs(daysRemaining) + "d",
-    daysRemaining <= 3, "🟡 Due Soon (" + daysRemaining + "d left)",
-    "🟢 On Track"
+    empty(deadline), "⚪ No Deadline",
+    let(
+      daysRemaining, dateBetween(deadline, now(), "days"),
+      ifs(
+        daysRemaining < 0, "🔴 Overdue by " + abs(daysRemaining) + "d",
+        daysRemaining <= 3, "🟡 Due Soon (" + daysRemaining + "d left)",
+        "🟢 On Track"
+      )
+    )
   )
 )

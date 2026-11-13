@@ -56,8 +56,8 @@ let(
   done, prop("Tasks").filter(current.prop("Status") == "Done").length(),
   percent, if(total > 0, round(done / total * 100), 0),
   barLength, 10,
-  filled, round(percent / 10),
-  empty, barLength - filled,
+  filled, min(barLength, max(0, round(percent / 10))),
+  empty, max(0, barLength - filled),
   if(
     total == 0,
     "⚪ No Tasks Assigned",
@@ -75,12 +75,17 @@ let(
   done, prop("Tasks").filter(current.prop("Status") == "Done").length(),
   isDone, prop("Status") == "Completed" or (total > 0 and done == total),
   deadline, prop("Deadline"),
-  daysRemaining, if(empty(deadline), 999, dateBetween(deadline, now(), "days")),
   ifs(
     isDone, "✅ Completed",
-    daysRemaining < 0, "🔴 Overdue by " + abs(daysRemaining) + "d",
-    daysRemaining <= 3, "🟡 Due Soon (" + daysRemaining + "d left)",
-    "🟢 On Track"
+    empty(deadline), "⚪ No Deadline",
+    let(
+      daysRemaining, dateBetween(deadline, now(), "days"),
+      ifs(
+        daysRemaining < 0, "🔴 Overdue by " + abs(daysRemaining) + "d",
+        daysRemaining <= 3, "🟡 Due Soon (" + daysRemaining + "d left)",
+        "🟢 On Track"
+      )
+    )
   )
 )
 ```
@@ -92,14 +97,18 @@ Generates status indicators based on due dates relative to current date:
 let(
   isCompleted, prop("Status") == "Done",
   due, prop("Due Date"),
-  diff, dateBetween(due, now(), "days"),
   ifs(
     isCompleted, "✓ Done",
     empty(due), "🗓️ Unscheduled",
-    diff < 0, "⚠️ Overdue (" + abs(diff) + "d ago)",
-    diff == 0, "🔥 Due Today",
-    diff == 1, "⚡ Tomorrow",
-    "📅 " + formatDate(due, "MMM DD")
+    let(
+      diff, dateBetween(due, now(), "days"),
+      ifs(
+        diff < 0, "⚠️ Overdue (" + abs(diff) + "d ago)",
+        diff == 0, "🔥 Due Today",
+        diff == 1, "⚡ Tomorrow",
+        "📅 " + formatDate(due, "MMM DD")
+      )
+    )
   )
 )
 ```
@@ -127,33 +136,52 @@ let(
 ```
 open-second-brain/
 ├── docs/
-│   ├── NOTION_BUILD_GUIDE.md      # Manual setup guide for Notion UI
-│   ├── PARA_METHOD.md             # Breakdown of P.A.R.A. and C.O.D.E.
-│   └── MOBILE_QUICK_CAPTURE.md    # iOS Shortcut, Raycast, and Web Clipper setup
-├── formulas/                      # Tested raw JavaScript snippets for Notion Formulas 2.0
+│   ├── NOTION_MARKETPLACE_LISTING.md # Official Marketplace copy, SEO pack & deep links
+│   ├── NOTION_BUILD_GUIDE.md         # Manual setup guide for Notion UI
+│   ├── PARA_METHOD.md                # Breakdown of P.A.R.A. and C.O.D.E.
+│   └── MOBILE_QUICK_CAPTURE.md       # iOS Shortcut, Raycast, and Web Clipper setup
+├── formulas/                         # Tested raw JavaScript snippets for Notion Formulas 2.0
 │   ├── project_progress_bar.js
 │   ├── project_health_score.js
 │   ├── task_urgency_badge.js
 │   └── eisenhower_matrix.js
-├── schemas/                       # Declarative JSON schemas for each database
+├── schemas/                          # Declarative JSON schemas for each database
 │   ├── projects.json
 │   ├── areas.json
 │   ├── tasks.json
 │   ├── notes.json
 │   ├── resources.json
 │   └── reviews.json
-├── provisioner/                   # TypeScript Notion API provisioner
+├── provisioner/                      # TypeScript Notion API provisioner
 │   ├── package.json
 │   ├── tsconfig.json
 │   ├── .env.example
 │   └── src/
 │       ├── index.ts
 │       └── builder.ts
-├── index.html                     # Single-page static documentation for GitHub Pages
-├── CONTRIBUTING.md                # Community contribution guidelines
-├── LICENSE                        # Dual MIT (code) / CC-BY-4.0 (template)
+├── index.html                        # Single-page static documentation & link generator
+├── SECURITY.md                       # Security policy, credential safety & disclosure
+├── CONTRIBUTING.md                   # Community contribution guidelines
+├── LICENSE                           # Dual MIT (code) / CC-BY-4.0 (template)
 └── README.md
 ```
+
+---
+
+## Notion Marketplace & Duplication
+
+- **One-Click Direct Duplicate URL**:
+  ```
+  https://[your-workspace].notion.site/[page-id]?pvs=4
+  ```
+- **Notion Marketplace Canonical Link**:
+  ```
+  https://www.notion.so/templates/opensecondbrain-para-system
+  ```
+- **Official Creator Submission Portal**:
+  Submit your template to the Notion Marketplace at [notion.so/templates/submit](https://www.notion.so/templates/submit).
+
+See [`docs/NOTION_MARKETPLACE_LISTING.md`](docs/NOTION_MARKETPLACE_LISTING.md) for full SEO listing metadata, visual asset dimensions, and high-converting marketing copy.
 
 ---
 
