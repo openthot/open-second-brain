@@ -2,6 +2,11 @@
 
 An open-source personal knowledge and task management system for Notion, modeled on the P.A.R.A. framework and powered by Notion Formulas 2.0.
 
+[![Duplicate in Notion](https://img.shields.io/badge/Notion-Duplicate%20Template-000000?style=for-the-badge&logo=notion&logoColor=white)](https://subdued-web-348.notion.site/Open-Second-Brain-41755d645777804c8a57e19a692cdd43?pvs=4)
+[![License: MIT & CC-BY-4.0](https://img.shields.io/badge/License-MIT%20%2F%20CC--BY--4.0-blue?style=for-the-badge)](LICENSE)
+
+👉 **[Click here to duplicate the template directly into your Notion](https://subdued-web-348.notion.site/Open-Second-Brain-41755d645777804c8a57e19a692cdd43?pvs=4)**
+
 This repository provides:
 1. Complete database schemas for Projects, Areas, Resources, Archives, Tasks, Notes, and Reviews.
 2. Production-tested Notion Formulas 2.0 snippets for task progress bars, project health scoring, and Eisenhower matrix prioritization.
@@ -170,9 +175,9 @@ open-second-brain/
 
 ## Notion Marketplace & Duplication
 
-- **One-Click Direct Duplicate URL**:
+- **Live One-Click Duplicate Link**:
   ```
-  https://[your-workspace].notion.site/[page-id]?pvs=4
+  https://subdued-web-348.notion.site/Open-Second-Brain-41755d645777804c8a57e19a692cdd43?pvs=4
   ```
 - **Notion Marketplace Canonical Link**:
   ```

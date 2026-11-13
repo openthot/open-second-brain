@@ -54,7 +54,7 @@ export class NotionBrainBuilder {
           }
         },
         Status: {
-          status: {
+          select: {
             options: [
               { name: "Focusing", color: "green" },
               { name: "Maintaining", color: "blue" },
@@ -76,7 +76,7 @@ export class NotionBrainBuilder {
       properties: {
         Name: { title: {} },
         Status: {
-          status: {
+          select: {
             options: [
               { name: "Planning", color: "yellow" },
               { name: "Active Sprint", color: "blue" },
@@ -100,7 +100,7 @@ export class NotionBrainBuilder {
       properties: {
         Task: { title: {} },
         Status: {
-          status: {
+          select: {
             options: [
               { name: "To Do", color: "gray" },
               { name: "In Progress", color: "blue" },
@@ -226,7 +226,7 @@ export class NotionBrainBuilder {
   private async linkDatabaseRelations() {
     console.log("\n🔗 Establishing Relational Web between databases...");
 
-    // 1. Projects <-> Tasks
+    // 1. Projects <-> Tasks & Areas
     await this.notion.databases.update({
       database_id: this.dbMap["Projects"],
       properties: {
@@ -234,18 +234,14 @@ export class NotionBrainBuilder {
           relation: {
             database_id: this.dbMap["Tasks"],
             type: "dual_property",
-            dual_property: {
-              synced_property_name: "Project"
-            }
+            dual_property: {}
           }
         },
         Area: {
           relation: {
             database_id: this.dbMap["Areas"],
             type: "dual_property",
-            dual_property: {
-              synced_property_name: "Projects"
-            }
+            dual_property: {}
           }
         }
       }
@@ -259,9 +255,7 @@ export class NotionBrainBuilder {
           relation: {
             database_id: this.dbMap["Areas"],
             type: "dual_property",
-            dual_property: {
-              synced_property_name: "Tasks"
-            }
+            dual_property: {}
           }
         }
       }
@@ -275,18 +269,14 @@ export class NotionBrainBuilder {
           relation: {
             database_id: this.dbMap["Projects"],
             type: "dual_property",
-            dual_property: {
-              synced_property_name: "Notes"
-            }
+            dual_property: {}
           }
         },
         Resource: {
           relation: {
             database_id: this.dbMap["Resources"],
             type: "dual_property",
-            dual_property: {
-              synced_property_name: "Notes"
-            }
+            dual_property: {}
           }
         }
       }
@@ -304,7 +294,7 @@ export class NotionBrainBuilder {
       properties: {
         Name: { title: [{ text: { content: "Career & Engineering" } }] },
         Category: { select: { name: "Professional" } },
-        Status: { status: { name: "Focusing" } }
+        Status: { select: { name: "Focusing" } }
       }
     });
 
@@ -313,7 +303,7 @@ export class NotionBrainBuilder {
       properties: {
         Name: { title: [{ text: { content: "Health & Longevity" } }] },
         Category: { select: { name: "Health & Longevity" } },
-        Status: { status: { name: "Maintaining" } }
+        Status: { select: { name: "Maintaining" } }
       }
     });
 

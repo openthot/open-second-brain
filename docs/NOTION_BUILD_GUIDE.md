@@ -2,6 +2,9 @@
 
 This manual setup guide provides a step-by-step blueprint for building **OpenSecondBrain** directly inside Notion's user interface. If you prefer not to use the automated TypeScript CLI provisioner, follow these instructions to configure the databases, relational links, rollups, and dashboard cockpit.
 
+> [!TIP]
+> **One-Click Instant Duplication**: You do not have to build this manually if you prefer not to. You can directly duplicate the live production workspace: **[Duplicate OpenSecondBrain on Notion](https://subdued-web-348.notion.site/Open-Second-Brain-41755d645777804c8a57e19a692cdd43?pvs=4)**.
+
 ---
 
 ## Workspace Architecture Summary

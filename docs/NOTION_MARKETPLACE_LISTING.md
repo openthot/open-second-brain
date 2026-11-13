@@ -6,12 +6,12 @@ This document contains everything needed to list **OpenSecondBrain** on the offi
 
 ## 1. Notion Marketplace Compatible Links
 
-### A. Direct One-Click Duplicate Link Format
-When publishing your template so users can duplicate it directly into their own Notion workspace with a single click:
+### A. Direct One-Click Duplicate Link
+Your live, production template duplicate link:
 ```text
-https://[your-workspace-name].notion.site/[page-title-slug]-[page-id]?pvs=4
+https://subdued-web-348.notion.site/Open-Second-Brain-41755d645777804c8a57e19a692cdd43?pvs=4
 ```
-To enable instant duplication:
+To ensure users can duplicate this page:
 1. In your Notion workspace, open the OpenSecondBrain parent page.
 2. Click **Share** (top right) $\to$ Select the **Publish** tab.
 3. Click **Publish to web**.
